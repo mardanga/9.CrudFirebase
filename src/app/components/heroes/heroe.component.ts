@@ -15,7 +15,7 @@ export class HeroeComponent implements OnInit {
 
   heroe: IHeroe = {
     nombre: '',
-    casa: 'DC',
+    casa: 'Marvel',
     bio: ''
   }
 
@@ -31,9 +31,14 @@ export class HeroeComponent implements OnInit {
     this.ar.params.subscribe(res => {
       this.key = res['id'];
       if (this.key !== 'nuevo') {
-      this.editando = true;
+        this.editando = true;
+        this.heroeSrv.getHeroe(this.key).subscribe(
+          data => {
+            this.heroe = data;
+            console.log(data);
+          }
+        );
       }
-
     });
 
   }
@@ -59,5 +64,11 @@ export class HeroeComponent implements OnInit {
           error => console.error(error)
         );
     }
+  }
+
+  resetForm(formu: NgForm) {
+    formu.reset({
+      casa: 'Marvel'
+    });
   }
 }
