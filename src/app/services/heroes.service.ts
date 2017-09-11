@@ -53,4 +53,9 @@ export class HeroesService {
   getHeroes() {
     return this.http.get(this.heroesUrl).map(res => res.json());
   }
+
+  eliminarHeroe( key: string) {
+    let urlGet = this.heroeUrl + key + '.json';
+    return this.http.delete(urlGet).map(res => res.json());
+  }
 }

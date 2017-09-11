@@ -21,4 +21,15 @@ export class HeroesComponent implements OnInit {
     );
   }
 
+  eliminarHeroe(key) {
+    this.heroeSrv.eliminarHeroe(key).subscribe(resp => {
+      if (resp) {
+        console.error(resp);
+      } else {
+        delete this.heroes[key];
+      }
+
+    })
+  }
+
 }

@@ -27,11 +27,24 @@
             <td>{{i+1}}</td>
             <td>{{heroes[k].nombre}}</td>
             <td>{{heroes[k].casa}}</td>
-            <td></td>
+            <td>
+              <button [routerLink]='["/heroe", k]' 
+                class="btn btn-success"
+                >Editar
+              </button>
+              <button
+                 class="btn btn-outline-danger"
+                 (click)='eliminarHeroe(k)'
+              > Eliminar</button>
+            </td>
           </tr>
           
         </tbody>
+
       </table>
+      <div class="alert alert-warning" role="alert" *ngIf="(heroes | keys).length === 0" >
+        No existen registros
+      </div>
     </div>
   </div>
 </div>
